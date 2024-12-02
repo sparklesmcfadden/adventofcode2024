@@ -2,5 +2,4 @@
 
 using AdventOfCode2024;
 
-Day1.Day1_Part1("../../../inputs/day1.txt");
-Day1.Day1_Part2("../../../inputs/day1.txt");
+Utilities.PrintResults(1, new List<object> {Day1.Day1_Part1(), Day1.Day1_Part2()});

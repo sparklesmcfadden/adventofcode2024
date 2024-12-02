@@ -18,4 +18,10 @@ public class Utilities
     {
         return File.ReadAllText(path);
     }
+
+    public static void PrintResults(int day, List<object> results)
+    {
+        Console.WriteLine($"Day {day}:");
+        results.ForEach(n => Console.WriteLine(n.ToString()));
+    }
 }

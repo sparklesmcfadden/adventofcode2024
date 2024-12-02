@@ -1,10 +1,12 @@
 namespace AdventOfCode2024;
 
-public class Day1
+public static class Day1
 {
-    public static int Day1_Part1(string path)
+    private const string InputPath = "../../../inputs/day1.txt";
+
+    public static int Day1_Part1()
     {
-        var file = Utilities.LoadFileAsLines(path);
+        var file = Utilities.LoadFileAsLines(InputPath);
 
         var listA = MakeList(file, 0);
         var listB = MakeList(file, 1);
@@ -17,13 +19,12 @@ public class Day1
             diffSum += diff;
         }
         
-        Console.WriteLine(diffSum);
         return diffSum;
     }
 
-    public static int Day1_Part2(string path)
+    public static int Day1_Part2()
     {
-        var file = Utilities.LoadFileAsLines(path);
+        var file = Utilities.LoadFileAsLines(InputPath);
 
         var listA = MakeList(file, 0);
         var listB = MakeList(file, 1);
@@ -34,8 +35,7 @@ public class Day1
         {
             similarityScore += IsInList(item, listB);
         }
-
-        Console.WriteLine(similarityScore);
+        
         return similarityScore;
     }
 
