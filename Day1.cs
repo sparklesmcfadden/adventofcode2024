@@ -11,13 +11,7 @@ public static class Day1
         var listA = MakeList(file, 0);
         var listB = MakeList(file, 1);
 
-        int diffSum = 0;
-
-        foreach (var (number, i) in listA.Select((v, i) => (v, i)))
-        {
-            var diff = Math.Abs(number - listB[i]);
-            diffSum += diff;
-        }
+        int diffSum = listA.Zip(listB, (a, b) => Math.Abs(a - b)).Sum();
         
         return diffSum;
     }
@@ -29,12 +23,7 @@ public static class Day1
         var listA = MakeList(file, 0);
         var listB = MakeList(file, 1);
         
-        var similarityScore = 0;
-
-        foreach (var item in listA)
-        {
-            similarityScore += IsInList(item, listB);
-        }
+        var similarityScore = listA.Select(n => IsInList(n, listB)).Sum();
         
         return similarityScore;
     }
@@ -46,14 +35,7 @@ public static class Day1
     
     private static int IsInList(int input, List<int> inputList)
     {
-        var count = 0;
-        foreach (var item in inputList)
-        {
-            if (input == item)
-            {
-                count++;
-            }
-        }
+        var count = inputList.Count(n => n == input);
 
         return input * count;
     }
