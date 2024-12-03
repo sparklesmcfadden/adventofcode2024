@@ -16,7 +16,7 @@ public class Day3
         var part1 = Day3_Part1();
         Timer.Stop();
         Console.WriteLine($"{part1} ({Timer.Elapsed.TotalMilliseconds})");
-        
+
         Timer.Reset();
         Timer.Start();
         var part2 = Day3_Part2();
@@ -28,46 +28,41 @@ public class Day3
     {
         var input = Utilities.LoadFile(InputPath);
         var matches = Regex.Matches(input, "mul\\(\\d{1,3},\\d{1,3}\\)");
-        var result = 0;
 
-        foreach (Match match in matches)
+        return matches.Select(match =>
         {
             var products = Regex.Matches(match.Value, "\\d+").Select(n => Int32.Parse(n.Value)).ToList();
-            result += products[0] * products[1];
-        }
-
-        return result;
+            return products[0] * products[1];
+        }).Sum();
     }
 
     public static int Day3_Part2()
     {
         var input = Utilities.LoadFile(InputPath);
         var matches = Regex.Matches(input, "mul\\(\\d+,\\d+\\)|do\\(\\)|don't\\(\\)");
-
-        var result = 0;
         var enabled = true;
-        foreach (Match match in matches)
+
+        return matches.Select(match =>
         {
             switch (match.Value)
             {
                 case "do()":
                     enabled = true;
-                    break;
+                    return 0;
                 case "don't()":
                     enabled = false;
-                    break;
+                    return 0;
                 default:
                 {
                     if (enabled)
                     {
                         var products = Regex.Matches(match.Value, "\\d+").Select(n => Int32.Parse(n.Value)).ToList();
-                        result += products[0] * products[1];
+                        return products[0] * products[1];
                     }
-                    break;
+
+                    return 0;
                 }
             }
-        }
-        
-        return result;
+        }).Sum();
     }
 }
