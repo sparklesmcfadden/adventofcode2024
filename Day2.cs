@@ -1,8 +1,26 @@
+using System.Diagnostics;
+
 namespace AdventOfCode2024;
 
 public class Day2
 {
     private const string InputPath = "../../../inputs/day2.txt";
+    private static readonly Stopwatch Timer = new();
+
+    public static void Run()
+    {
+        Console.WriteLine("Day 3");
+        Timer.Start();
+        var part1 = Day2_Part1();
+        Timer.Stop();
+        Console.WriteLine($"{part1} ({Timer.Elapsed.TotalMilliseconds})");
+        
+        Timer.Reset();
+        Timer.Start();
+        var part2 = Day2_Part2();
+        Timer.Stop();
+        Console.WriteLine($"{part2} ({Timer.Elapsed.TotalMilliseconds})");
+    }
 
     public static int Day2_Part1()
     {
