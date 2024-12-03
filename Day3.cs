@@ -48,20 +48,26 @@ public class Day3
         var enabled = true;
         foreach (Match match in matches)
         {
-            enabled = match.Value switch
+            switch (match.Value)
             {
-                "do()" => true,
-                "don't()" => false,
-                _ => enabled
-            };
-
-            if (enabled && match.Value.StartsWith("mul"))
-            {
-                var products = Regex.Matches(match.Value, "\\d+").Select(n => Int32.Parse(n.Value)).ToList();
-                result += products[0] * products[1];
+                case "do()":
+                    enabled = true;
+                    break;
+                case "don't()":
+                    enabled = false;
+                    break;
+                default:
+                {
+                    if (enabled)
+                    {
+                        var products = Regex.Matches(match.Value, "\\d+").Select(n => Int32.Parse(n.Value)).ToList();
+                        result += products[0] * products[1];
+                    }
+                    break;
+                }
             }
         }
-
+        
         return result;
     }
 }
