@@ -33,14 +33,15 @@ public static class Day4
         {
             for (var x = 0; x < input[y].Length; x++)
             {
-                count += GetWordsE(y, x, input);
-                count += GetWordsSE(y, x, input);
-                count += GetWordsS(y, x, input);
-                count += GetWordsSW(y, x, input);
-                count += GetWordsW(y, x, input);
-                count += GetWordsNW(y, x, input);
-                count += GetWordsN(y, x, input);
-                count += GetWordsNE(y, x, input);
+                // count += GetWordsE(y, x, input);
+                // count += GetWordsSE(y, x, input);
+                // count += GetWordsS(y, x, input);
+                // count += GetWordsSW(y, x, input);
+                // count += GetWordsW(y, x, input);
+                // count += GetWordsNW(y, x, input);
+                // count += GetWordsN(y, x, input);
+                // count += GetWordsNE(y, x, input);
+                count += GetWords(y, x, input, "XMAS");
             }
         }
 
@@ -58,6 +59,33 @@ public static class Day4
             {
                 count += IsXMas(y, x, input);
             }
+        }
+
+        return count;
+    }
+
+    private static int GetWords(int y, int x, List<string> input, string word)
+    {
+        var count = 0;
+        var directions = new List<int[]>
+        {
+            new [] {0, 1},
+            new [] {1, 1},
+            new [] {1, 0},
+            new [] {1, -1},
+            new [] {0, -1},
+            new [] {-1, -1},
+            new [] {-1, 0},
+            new [] {-1, 1},
+        };
+        foreach (var direction in directions)
+        {
+            var foundWord = "";
+            for (var i = 0; i < word.Length; i++)
+            {
+                foundWord += InRange(y + i * direction[0], x + i * direction[1], input);
+            }
+            count += foundWord == word ? 1 : 0;
         }
 
         return count;
