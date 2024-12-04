@@ -59,6 +59,7 @@ public static class Day4
     private static int GetWords(int y, int x, List<string> input, string word)
     {
         var count = 0;
+        var startCoords = new List<int[]>();
         var directions = new List<int[]>
         {
             new [] {0, 1},
@@ -77,7 +78,12 @@ public static class Day4
             {
                 foundWord += InRange(y + i * direction[0], x + i * direction[1], input);
             }
-            count += foundWord == word ? 1 : 0;
+
+            if (foundWord == word)
+            {
+                count++;
+                startCoords.Add(new [] {y, x});
+            }
         }
 
         return count;
