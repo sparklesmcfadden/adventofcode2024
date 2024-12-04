@@ -33,14 +33,6 @@ public static class Day4
         {
             for (var x = 0; x < input[y].Length; x++)
             {
-                // count += GetWordsE(y, x, input);
-                // count += GetWordsSE(y, x, input);
-                // count += GetWordsS(y, x, input);
-                // count += GetWordsSW(y, x, input);
-                // count += GetWordsW(y, x, input);
-                // count += GetWordsNW(y, x, input);
-                // count += GetWordsN(y, x, input);
-                // count += GetWordsNE(y, x, input);
                 count += GetWords(y, x, input, "XMAS");
             }
         }
