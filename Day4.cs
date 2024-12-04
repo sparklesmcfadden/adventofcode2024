@@ -59,17 +59,10 @@ public static class Day4
     private static int GetWords(int y, int x, List<string> input, string word)
     {
         var count = 0;
-        var startCoords = new List<int[]>();
         var directions = new List<int[]>
         {
-            new [] {0, 1},
-            new [] {1, 1},
-            new [] {1, 0},
-            new [] {1, -1},
-            new [] {0, -1},
-            new [] {-1, -1},
-            new [] {-1, 0},
-            new [] {-1, 1},
+            new[] { 0, 1 }, new[] { 1, 1 }, new[] { 1, 0 }, new[] { 1, -1 },
+            new[] { 0, -1 }, new[] { -1, -1 }, new[] { -1, 0 }, new[] { -1, 1 },
         };
         foreach (var direction in directions)
         {
@@ -79,11 +72,7 @@ public static class Day4
                 foundWord += InRange(y + i * direction[0], x + i * direction[1], input);
             }
 
-            if (foundWord == word)
-            {
-                count++;
-                startCoords.Add(new [] {y, x});
-            }
+            count += foundWord == word ? 1 : 0;
         }
 
         return count;
@@ -106,7 +95,8 @@ public static class Day4
         southeast += InRange(y + 1, x + 1, input);
         southeast += InRange(y + 2, x + 2, input);
         southeast += InRange(y + 3, x + 3, input);
-        return southeast == "XMAS" ? 1 : 0;;
+        return southeast == "XMAS" ? 1 : 0;
+        ;
     }
 
     private static int GetWordsS(int y, int x, List<string> input)
@@ -116,7 +106,8 @@ public static class Day4
         south += InRange(y + 1, x, input);
         south += InRange(y + 2, x, input);
         south += InRange(y + 3, x, input);
-        return south == "XMAS" ? 1 : 0;;
+        return south == "XMAS" ? 1 : 0;
+        ;
     }
 
     private static int GetWordsSW(int y, int x, List<string> input)
@@ -126,7 +117,8 @@ public static class Day4
         southwest += InRange(y + 1, x - 1, input);
         southwest += InRange(y + 2, x - 2, input);
         southwest += InRange(y + 3, x - 3, input);
-        return southwest == "XMAS" ? 1 : 0;;
+        return southwest == "XMAS" ? 1 : 0;
+        ;
     }
 
     private static int GetWordsW(int y, int x, List<string> input)
@@ -136,7 +128,8 @@ public static class Day4
         west += InRange(y, x - 1, input);
         west += InRange(y, x - 2, input);
         west += InRange(y, x - 3, input);
-        return west == "XMAS" ? 1 : 0;;
+        return west == "XMAS" ? 1 : 0;
+        ;
     }
 
     private static int GetWordsNW(int y, int x, List<string> input)
@@ -146,7 +139,8 @@ public static class Day4
         northwest += InRange(y - 1, x - 1, input);
         northwest += InRange(y - 2, x - 2, input);
         northwest += InRange(y - 3, x - 3, input);
-        return northwest == "XMAS" ? 1 : 0;;
+        return northwest == "XMAS" ? 1 : 0;
+        ;
     }
 
     private static int GetWordsN(int y, int x, List<string> input)
@@ -156,7 +150,8 @@ public static class Day4
         north += InRange(y - 1, x, input);
         north += InRange(y - 2, x, input);
         north += InRange(y - 3, x, input);
-        return north == "XMAS" ? 1 : 0;;
+        return north == "XMAS" ? 1 : 0;
+        ;
     }
 
     private static int GetWordsNE(int y, int x, List<string> input)
@@ -166,7 +161,8 @@ public static class Day4
         northeast += InRange(y - 1, x + 1, input);
         northeast += InRange(y - 2, x + 2, input);
         northeast += InRange(y - 3, x + 3, input);
-        return northeast == "XMAS" ? 1 : 0;;
+        return northeast == "XMAS" ? 1 : 0;
+        ;
     }
 
     private static char InRange(int y, int x, List<string> input)
