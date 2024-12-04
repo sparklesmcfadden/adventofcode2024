@@ -2,14 +2,14 @@ using System.Diagnostics;
 
 namespace AdventOfCode2024;
 
-public class Day2
+public static class Day2
 {
     private const string InputPath = "../../../inputs/day2.txt";
     private static readonly Stopwatch Timer = new();
 
     public static void Run()
     {
-        Console.WriteLine("Day 3");
+        Console.WriteLine("Day 2");
         Timer.Start();
         var part1 = Day2_Part1();
         Timer.Stop();
@@ -22,7 +22,7 @@ public class Day2
         Console.WriteLine($"{part2} ({Timer.Elapsed.TotalMilliseconds})");
     }
 
-    public static int Day2_Part1()
+    private static int Day2_Part1()
     {
         var file = Utilities.LoadFileAsLines(InputPath);
         var reportList = ParseReport(file);
@@ -30,7 +30,7 @@ public class Day2
         return reportList.Count(ProcessReport);
     }
 
-    public static int Day2_Part2()
+    private static int Day2_Part2()
     {
         var file = Utilities.LoadFileAsLines(InputPath);
         var reportList = ParseReport(file);

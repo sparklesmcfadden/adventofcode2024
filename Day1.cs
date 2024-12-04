@@ -22,7 +22,7 @@ public static class Day1
         Console.WriteLine($"{part2} ({Timer.Elapsed.TotalMilliseconds})");
     }
 
-    public static int Day1_Part1()
+    private static int Day1_Part1()
     {
         var file = Utilities.LoadFileAsLines(InputPath);
 
@@ -34,7 +34,7 @@ public static class Day1
         return diffSum;
     }
 
-    public static int Day1_Part2()
+    private static int Day1_Part2()
     {
         var file = Utilities.LoadFileAsLines(InputPath);
 

@@ -3,9 +3,8 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2024;
 
-public class Day3
+public static class Day3
 {
-    private const string InputTestPath = "../../../inputs/day3_test.txt";
     private const string InputPath = "../../../inputs/day3.txt";
     private static readonly Stopwatch Timer = new();
 
@@ -24,7 +23,7 @@ public class Day3
         Console.WriteLine($"{part2} ({Timer.Elapsed.TotalMilliseconds})");
     }
 
-    public static int Day3_Part1()
+    private static int Day3_Part1()
     {
         var input = Utilities.LoadFile(InputPath);
         var matches = Regex.Matches(input, "mul\\(\\d{1,3},\\d{1,3}\\)");
@@ -36,7 +35,7 @@ public class Day3
         }).Sum();
     }
 
-    public static int Day3_Part2()
+    private static int Day3_Part2()
     {
         var input = Utilities.LoadFile(InputPath);
         var matches = Regex.Matches(input, "mul\\(\\d+,\\d+\\)|do\\(\\)|don't\\(\\)");
