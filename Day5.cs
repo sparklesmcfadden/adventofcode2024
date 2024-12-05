@@ -65,21 +65,21 @@ public static class Day5
     {
         var fixedPage = page.Select(n => n).ToList();
 
-        foreach (var rule in rules)
+        var isFixed = ValidateRules(fixedPage, rules);
+        while (!isFixed)
         {
-            var previousPage = fixedPage.Select(n => n).ToList();
-            if (!ValidateRule(fixedPage, rule))
+            foreach (var rule in rules)
             {
-                fixedPage.RemoveAt(previousPage.IndexOf(rule[1]));
-                fixedPage.Insert(previousPage.IndexOf(rule[0]), rule[1]);
+                var previousPage = fixedPage.Select(n => n).ToList();
+                if (!ValidateRule(fixedPage, rule))
+                {
+                    fixedPage.RemoveAt(previousPage.IndexOf(rule[1]));
+                    fixedPage.Insert(previousPage.IndexOf(rule[0]), rule[1]);
+                }
             }
+            isFixed = ValidateRules(fixedPage, rules);
         }
-
-        if (!ValidateRules(fixedPage, rules))
-        {
-            fixedPage = FixPage(fixedPage, rules);
-        }
-
+        
         return fixedPage;
     }
 }
