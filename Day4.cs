@@ -33,7 +33,8 @@ public static class Day4
         {
             for (var x = 0; x < input[y].Length; x++)
             {
-                count += GetWords(y, x, input, "XMAS");
+                const string word = "XMAS";
+                count += input[y][x] == word[0] ? GetWords(y, x, input, word) : 0;
             }
         }
 
