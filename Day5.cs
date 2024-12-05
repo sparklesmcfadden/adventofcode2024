@@ -70,9 +70,9 @@ public static class Day5
         {
             foreach (var rule in rules)
             {
-                var previousPage = fixedPage.Select(n => n).ToList();
                 if (!ValidateRule(fixedPage, rule))
                 {
+                    var previousPage = fixedPage.Select(n => n).ToList();
                     fixedPage.RemoveAt(previousPage.IndexOf(rule[1]));
                     fixedPage.Insert(previousPage.IndexOf(rule[0]), rule[1]);
                 }
