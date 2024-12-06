@@ -102,7 +102,6 @@ public static class Day6
             }
             else
             {
-                count += coordinateList.Any(x => x[0] == coordinates[0] && x[1] == coordinates[1]) ? 0 : 1;
                 coordinateList.Add(coordinates);
                 coordinates = nextCoordinates;
         
@@ -112,7 +111,9 @@ public static class Day6
                 } 
             }
         }
-        return count;
+        
+        var result = coordinateList.DistinctBy(x => string.Join(",", x)).ToList();
+        return result.Count;
     }
 
     private static bool InRange(int[] coordinates, List<string> input)
