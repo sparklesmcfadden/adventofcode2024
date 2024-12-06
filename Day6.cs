@@ -72,8 +72,7 @@ public static class Day6
             {
                 var obstacle = new[] { x, y };
                 var newInput = DropAnObstacle(input, obstacle);
-                var walkIt = Walk(newInput, coordinates, new[] { 0, -1 });
-                obstacleSpots += walkIt == -1 ? 1 : 0;
+                obstacleSpots += WalkWithObstacle(newInput, coordinates, new[] { 0, -1 });
             }
         }
         
@@ -87,6 +86,32 @@ public static class Day6
         var newLine = line.Remove(obstacle[0], 1).Insert(obstacle[0], "#");
         newInput[obstacle[1]] = newLine;
         return newInput;
+    }
+
+    private static int WalkWithObstacle(List<string> input, int[] coordinates, int[] direction)
+    {
+        var count = 0;
+        var limit = input.Count * input[0].Length;
+        while (InRange(coordinates, input))
+        {
+            var nextCoordinates = coordinates.Zip(direction, (i, j) => i + j).ToArray();
+            if (InRange(nextCoordinates, input) && input[nextCoordinates[1]][nextCoordinates[0]] == '#')
+            {
+                direction = TurnRight(direction);
+            }
+            else
+            {
+                count++;
+                coordinates = nextCoordinates;
+        
+                if (count > limit)
+                {
+                    return 1;
+                } 
+            }
+        }
+
+        return 0;
     }
 
     private static int Walk(List<string> input, int[] coordinates, int[] direction)
@@ -104,11 +129,6 @@ public static class Day6
             {
                 coordinateList.Add(coordinates);
                 coordinates = nextCoordinates;
-        
-                if (coordinateList.Count > input.Count * input[0].Length)
-                {
-                    return -1;
-                } 
             }
         }
         
