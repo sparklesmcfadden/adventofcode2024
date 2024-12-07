@@ -131,8 +131,8 @@ public static class Day7
 
     private class Equation
     {
-        public long TestValue { get; set; }
-        public List<long> Components { get; set; } = new ();
+        public long TestValue { get; init; }
+        public List<long> Components { get; init; } = new ();
         public List<long> PreviousResults { get; set; } = new();
         public int Index { get; set; } = 1;
     }
