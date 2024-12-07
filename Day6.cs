@@ -1,6 +1,4 @@
 using System.Diagnostics;
-using System.Net;
-using System.Security.Cryptography;
 
 namespace AdventOfCode2024;
 
@@ -116,7 +114,6 @@ public static class Day6
 
     private static int Walk(List<string> input, int[] coordinates, int[] direction)
     {
-        var count = 0;
         var coordinateList = new List<int[]>();
         while (InRange(coordinates, input))
         {
@@ -130,6 +127,7 @@ public static class Day6
                 coordinateList.Add(coordinates);
                 coordinates = nextCoordinates;
             }
+            // DrawMap(coordinates, input, 0);
         }
         
         var result = coordinateList.DistinctBy(x => string.Join(",", x)).ToList();
@@ -161,11 +159,6 @@ public static class Day6
 
     private static void DrawMap(int[] coordinates, List<string> input, int count)
     {
-        try
-        {
-            Console.SetCursorPosition(0, Console.CursorTop - input.Count - 1);
-        }
-        catch { }
         Console.WriteLine(count);
         for (var i = 0; i < input.Count; i++)
         {
@@ -181,6 +174,7 @@ public static class Day6
             }
             Console.Write("\n");
         }
+        Console.SetCursorPosition(0, Console.CursorTop - input.Count -1);
         Thread.Sleep(50);
     }
 }
