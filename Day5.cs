@@ -1,41 +1,19 @@
-using System.Diagnostics;
-
 namespace AdventOfCode2024;
 
 public static class Day5
 {
-    private const string Day = "5";
-    private const string InputPath = $"../../../inputs/day{Day}.txt";
-    private const string InputPathTest = $"../../../inputs/day{Day}_test.txt";
-    private static readonly Stopwatch Timer = new();
-
-    public static void Run()
+    public static int Part1(string inputPath)
     {
-        Console.WriteLine($"Day {Day}");
-        Timer.Start();
-        var part1 = Day5_Part1();
-        Timer.Stop();
-        Console.WriteLine($"{part1} ({Timer.Elapsed.TotalMilliseconds})");
-
-        Timer.Reset();
-        Timer.Start();
-        var part2 = Day5_Part2();
-        Timer.Stop();
-        Console.WriteLine($"{part2} ({Timer.Elapsed.TotalMilliseconds})");
-    }
-
-    private static int Day5_Part1()
-    {
-        var inputFile = Utilities.LoadFile(InputPath).Split("\n\n");
+        var inputFile = Utilities.LoadFile(inputPath).Split("\n\n");
         var rules = inputFile[0].Split("\n").Select(n => n.Split("|").ToList()).ToList();
         var pages = inputFile[1].Split("\n").Select(n => n.Split(",").ToList()).ToList();
 
         return pages.Where(page => ValidateRules(page, rules)).Sum(page => Int32.Parse(page[page.Count / 2]));
     }
 
-    private static int Day5_Part2()
+    public static int Part2(string inputPath)
     {
-        var inputFile = Utilities.LoadFile(InputPath).Split("\n\n");
+        var inputFile = Utilities.LoadFile(inputPath).Split("\n\n");
         var rules = inputFile[0].Split("\n").Select(n => n.Split("|").ToList()).ToList();
         var pages = inputFile[1].Split("\n").Select(n => n.Split(",").ToList()).ToList();
         var middleSum = 0;

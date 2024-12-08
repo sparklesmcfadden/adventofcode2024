@@ -8,12 +8,9 @@ builder.SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 IConfiguration config = builder.Build();
 
-var inputPath = config["input_directory"];
+var inputPath = config["input_directory"]!;
 
-Day1.Run();
-Day2.Run();
-Day3.Run();
-Day4.Run();
-Day5.Run();
-Day6.Run();
-Day7.Run();
+for (var day = 1; day <= 8; day++)
+{
+    new AdventRunner(inputPath, day).Run();
+}

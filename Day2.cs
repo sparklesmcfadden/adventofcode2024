@@ -1,38 +1,18 @@
-using System.Diagnostics;
-
 namespace AdventOfCode2024;
 
 public static class Day2
 {
-    private const string InputPath = "../../../inputs/day2.txt";
-    private static readonly Stopwatch Timer = new();
-
-    public static void Run()
+    public static int Part1(string inputPath)
     {
-        Console.WriteLine("Day 2");
-        Timer.Start();
-        var part1 = Day2_Part1();
-        Timer.Stop();
-        Console.WriteLine($"{part1} ({Timer.Elapsed.TotalMilliseconds})");
-        
-        Timer.Reset();
-        Timer.Start();
-        var part2 = Day2_Part2();
-        Timer.Stop();
-        Console.WriteLine($"{part2} ({Timer.Elapsed.TotalMilliseconds})");
-    }
-
-    private static int Day2_Part1()
-    {
-        var file = Utilities.LoadFileAsLines(InputPath);
+        var file = Utilities.LoadFileAsLines(inputPath);
         var reportList = ParseReport(file);
 
         return reportList.Count(ProcessReport);
     }
 
-    private static int Day2_Part2()
+    public static int Part2(string inputPath)
     {
-        var file = Utilities.LoadFileAsLines(InputPath);
+        var file = Utilities.LoadFileAsLines(inputPath);
         var reportList = ParseReport(file);
 
         return reportList.Count(ProcessReportDampener);

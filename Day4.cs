@@ -1,32 +1,10 @@
-using System.Diagnostics;
-
 namespace AdventOfCode2024;
 
 public static class Day4
 {
-    private const string Day = "4";
-    private const string InputPath = $"../../../inputs/day{Day}.txt";
-    private const string InputPathTest = $"../../../inputs/day{Day}_test.txt";
-    private static readonly Stopwatch Timer = new();
-
-    public static void Run()
+    public static int Part1(string inputPath)
     {
-        Console.WriteLine($"Day {Day}");
-        Timer.Start();
-        var part1 = Day4_Part1();
-        Timer.Stop();
-        Console.WriteLine($"{part1} ({Timer.Elapsed.TotalMilliseconds})");
-
-        Timer.Reset();
-        Timer.Start();
-        var part2 = Day4_Part2();
-        Timer.Stop();
-        Console.WriteLine($"{part2} ({Timer.Elapsed.TotalMilliseconds})");
-    }
-
-    private static int Day4_Part1()
-    {
-        var input = Utilities.LoadFileAsLines(InputPath);
+        var input = Utilities.LoadFileAsLines(inputPath);
         var count = 0;
 
         for (var y = 0; y < input.Count; y++)
@@ -41,9 +19,9 @@ public static class Day4
         return count;
     }
 
-    private static int Day4_Part2()
+    public static int Part2(string inputPath)
     {
-        var input = Utilities.LoadFileAsLines(InputPath);
+        var input = Utilities.LoadFileAsLines(inputPath);
         var count = 0;
 
         for (var y = 0; y < input.Count; y++)

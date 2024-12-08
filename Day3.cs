@@ -1,31 +1,12 @@
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 
 namespace AdventOfCode2024;
 
 public static class Day3
 {
-    private const string InputPath = "../../../inputs/day3.txt";
-    private static readonly Stopwatch Timer = new();
-
-    public static void Run()
+    public static int Part1(string inputPath)
     {
-        Console.WriteLine("Day 3");
-        Timer.Start();
-        var part1 = Day3_Part1();
-        Timer.Stop();
-        Console.WriteLine($"{part1} ({Timer.Elapsed.TotalMilliseconds})");
-
-        Timer.Reset();
-        Timer.Start();
-        var part2 = Day3_Part2();
-        Timer.Stop();
-        Console.WriteLine($"{part2} ({Timer.Elapsed.TotalMilliseconds})");
-    }
-
-    private static int Day3_Part1()
-    {
-        var input = Utilities.LoadFile(InputPath);
+        var input = Utilities.LoadFile(inputPath);
         var matches = Regex.Matches(input, "mul\\(\\d{1,3},\\d{1,3}\\)");
 
         return matches.Select(match =>
@@ -35,9 +16,9 @@ public static class Day3
         }).Sum();
     }
 
-    private static int Day3_Part2()
+    public static int Part2(string inputPath)
     {
-        var input = Utilities.LoadFile(InputPath);
+        var input = Utilities.LoadFile(inputPath);
         var matches = Regex.Matches(input, "mul\\(\\d+,\\d+\\)|do\\(\\)|don't\\(\\)");
         var enabled = true;
 

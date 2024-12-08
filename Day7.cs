@@ -1,32 +1,10 @@
-using System.Diagnostics;
-
 namespace AdventOfCode2024;
 
 public static class Day7
 {
-    private const string Day = "7";
-    private const string InputPath = $"../../../inputs/day{Day}.txt";
-    private const string InputPathTest = $"../../../inputs/day{Day}_test.txt";
-    private static readonly Stopwatch Timer = new();
-
-    public static void Run()
+    public static long Part1(string inputPath)
     {
-        Console.WriteLine($"Day {Day}");
-        Timer.Start();
-        var part1 = Day7_Part1();
-        Timer.Stop();
-        Console.WriteLine($"{part1} ({Timer.Elapsed.TotalMilliseconds})");
-
-        Timer.Reset();
-        Timer.Start();
-        var part2 = Day7_Part2();
-        Timer.Stop();
-        Console.WriteLine($"{part2} ({Timer.Elapsed.TotalMilliseconds})");
-    }
-
-    private static long Day7_Part1()
-    {
-        var input = Utilities.LoadFileAsLines(InputPath);
+        var input = Utilities.LoadFileAsLines(inputPath);
         var equations = GetEquations(input);
 
         long testValue = 0;
@@ -47,9 +25,9 @@ public static class Day7
         return testValue;
     }
 
-    private static long Day7_Part2()
+    public static long Part2(string inputPath)
     {
-        var input = Utilities.LoadFileAsLines(InputPath);
+        var input = Utilities.LoadFileAsLines(inputPath);
         var equations = GetEquations(input);
 
         long testValue = 0;
