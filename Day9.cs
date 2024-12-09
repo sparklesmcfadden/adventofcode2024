@@ -22,16 +22,21 @@ public static class Day9
             }
         }
 
+        var lastBlockIndex = blockList.Count - 1;
         for (var i = 0; i < blockList.Count; i++)
         {
             if (blockList[i] == -1)
             {
-                var lastBlock = blockList.Last(n => n > 0);
-                var lastBlockIndex = blockList.LastIndexOf(lastBlock);  
-                if (lastBlockIndex > i)
+                for (var j = lastBlockIndex; j > i; j--)
                 {
-                    blockList[i] = lastBlock;
-                    blockList[lastBlockIndex] = -1;
+                    if (blockList[j] > 0)
+                    {
+                        var lastBlock = blockList[j];
+                        blockList[i] = lastBlock;
+                        blockList[j] = -1;
+                        lastBlockIndex = j;
+                        break;
+                    }
                 }
             }
         }
