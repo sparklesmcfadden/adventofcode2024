@@ -10,7 +10,4 @@ IConfiguration config = builder.Build();
 
 var inputPath = config["input_directory"]!;
 
-for (var day = 1; day <= 8; day++)
-{
-    new AdventRunner(inputPath, day).Run();
-}
+new AdventRunner(inputPath, 9);

@@ -15,6 +15,7 @@ public class AdventRunner
         _inputPath = test ? inputTestData : inputData;
         _day = day;
         Timer.Reset();
+        Run();
     }
 
     public void Run()
@@ -44,6 +45,18 @@ public class AdventRunner
             6 => Day6.Part1(inputPath),
             7 => Day7.Part1(inputPath),
             8 => Day8.Part1(inputPath),
+            9 => Day9.Part1(inputPath),
+            // 10 => Day10.Part1(inputPath),
+            // 11 => Day11.Part1(inputPath),
+            // 12 => Day12.Part1(inputPath),
+            // 13 => Day13.Part1(inputPath),
+            // 14 => Day14.Part1(inputPath),
+            // 15 => Day15.Part1(inputPath),
+            // 16 => Day16.Part1(inputPath),
+            // 17 => Day17.Part1(inputPath),
+            // 18 => Day18.Part1(inputPath),
+            // 19 => Day19.Part1(inputPath),
+            // 20 => Day20.Part1(inputPath),
             _ => 0
         };
     }
@@ -60,6 +73,18 @@ public class AdventRunner
             6 => Day6.Part2(inputPath),
             7 => Day7.Part2(inputPath),
             8 => Day8.Part2(inputPath),
+            9 => Day9.Part2(inputPath),
+            // 10 => Day10.Part2(inputPath),
+            // 11 => Day11.Part2(inputPath),
+            // 12 => Day12.Part2(inputPath),
+            // 13 => Day13.Part2(inputPath),
+            // 14 => Day14.Part2(inputPath),
+            // 15 => Day15.Part2(inputPath),
+            // 16 => Day16.Part2(inputPath),
+            // 17 => Day17.Part2(inputPath),
+            // 18 => Day18.Part2(inputPath),
+            // 19 => Day19.Part2(inputPath),
+            // 20 => Day20.Part2(inputPath),
             _ => 0
         };
     }
