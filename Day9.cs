@@ -37,6 +37,7 @@ public static class Day9
         for (var i = blockList.Count - 1; i >= 0; i--)
         {
             var fileToMove = blockList[i];
+            if (fileToMove.FileId == -1) continue;
             for (var j = 0; j < i; j++)
             {
                 if (blockList[j].FileId == -1) // it is free space
@@ -49,7 +50,6 @@ public static class Day9
                         if (blankLength > fileToMove.Length)
                         {
                             blockList.Insert(j + 1, new BlockFile(-1, blankLength - fileToMove.Length));
-                            blockList = MergeFreeSpace(blockList);
                         }
 
                         break;
@@ -60,20 +60,6 @@ public static class Day9
 
         var blocks = BlockFilesToBlocks(blockList);
         return CalculateChecksum2(blocks);
-    }
-
-    private static List<BlockFile> MergeFreeSpace(List<BlockFile> blockFiles)
-    {
-        for (var i = blockFiles.Count - 1; i > 1; i--)
-        {
-            if (blockFiles[i].FileId == -1 && blockFiles[i - 1].FileId == -1)
-            {
-                blockFiles[i].Length += blockFiles[i - 1].Length;
-                blockFiles.RemoveAt(i - 1);
-            }
-        }
-
-        return blockFiles;
     }
 
     private static List<BlockFile> MapToBlockFiles(string diskMap)
