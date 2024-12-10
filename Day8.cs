@@ -7,9 +7,9 @@ public static class Day8
         var input = Utilities.LoadFileAsLines(inputPath);
 
         var antennas = FindAntennas(input);
-        var range = new Coordinates(input.Count, input[0].Length);
+        var range = new Utilities.Coordinate(input.Count, input[0].Length);
 
-        var allAntiNodes = new List<Coordinates>();
+        var allAntiNodes = new List<Utilities.Coordinate>();
         foreach (var antenna in antennas)
         {
             antenna.AntiNodes = FindAntiNodes(antenna.Locations, range);
@@ -26,9 +26,9 @@ public static class Day8
         var input = Utilities.LoadFileAsLines(inputPath);
 
         var antennas = FindAntennas(input);
-        var range = new Coordinates(input.Count, input[0].Length);
+        var range = new Utilities.Coordinate(input.Count, input[0].Length);
 
-        var allAntiNodes = new List<Coordinates>();
+        var allAntiNodes = new List<Utilities.Coordinate>();
         foreach (var antenna in antennas)
         {
             antenna.AntiNodes = FindMoreAntiNodes(antenna.Locations, range);
@@ -52,7 +52,7 @@ public static class Day8
                 var frequency = input[y][x];
                 if (frequency != '.')
                 {
-                    var coordinates = new Coordinates(x, y);
+                    var coordinates = new Utilities.Coordinate(x, y);
                     var antenna = antennas.FirstOrDefault(a => a.Frequency == frequency);
                     if (antenna != null)
                     {
@@ -60,7 +60,7 @@ public static class Day8
                     }
                     else
                     {
-                        antennas.Add(new Antenna(frequency, new List<Coordinates> { coordinates }));
+                        antennas.Add(new Antenna(frequency, new List<Utilities.Coordinate> { coordinates }));
                     }
                 }
             }
@@ -69,22 +69,22 @@ public static class Day8
         return antennas;
     }
 
-    private static bool InRange(Coordinates coordinates, Coordinates range)
+    private static bool InRange(Utilities.Coordinate coordinate, Utilities.Coordinate range)
     {
-        return coordinates is { X: >= 0, Y: >= 0 } && coordinates.X < range.X && coordinates.Y < range.Y;
+        return coordinate is { X: >= 0, Y: >= 0 } && coordinate.X < range.X && coordinate.Y < range.Y;
     }
 
-    private static List<Coordinates> FindAntiNodes(List<Coordinates> locations, Coordinates range)
+    private static List<Utilities.Coordinate> FindAntiNodes(List<Utilities.Coordinate> locations, Utilities.Coordinate range)
     {
-        var antiNodes = new List<Coordinates>();
+        var antiNodes = new List<Utilities.Coordinate>();
         for (var i = 0; i < locations.Count - 1; i++)
         {
             for (var j = i + 1; j < locations.Count; j++)
             {
                 var xDiff = locations[i].X - locations[j].X;
                 var yDiff = locations[i].Y - locations[j].Y;
-                var antiNode1 = new Coordinates(locations[i].X + xDiff, locations[i].Y + yDiff);
-                var antiNode2 = new Coordinates(locations[j].X - xDiff, locations[j].Y - yDiff);
+                var antiNode1 = new Utilities.Coordinate(locations[i].X + xDiff, locations[i].Y + yDiff);
+                var antiNode2 = new Utilities.Coordinate(locations[j].X - xDiff, locations[j].Y - yDiff);
 
                 if (InRange(antiNode1, range))
                 {
@@ -101,9 +101,9 @@ public static class Day8
         return antiNodes;
     }
 
-    private static List<Coordinates> FindMoreAntiNodes(List<Coordinates> locations, Coordinates range)
+    private static List<Utilities.Coordinate> FindMoreAntiNodes(List<Utilities.Coordinate> locations, Utilities.Coordinate range)
     {
-        var antiNodes = new List<Coordinates>();
+        var antiNodes = new List<Utilities.Coordinate>();
         for (var i = 0; i < locations.Count - 1; i++)
         {
             for (var j = i + 1; j < locations.Count; j++)
@@ -113,11 +113,11 @@ public static class Day8
                 var startX = locations[i].X;
                 var startY = locations[i].Y;
 
-                while (InRange(new Coordinates(startX + xDiff, startY + yDiff), range))
+                while (InRange(new Utilities.Coordinate(startX + xDiff, startY + yDiff), range))
                 {
                     var nextX = startX + xDiff;
                     var nextY = startY + yDiff;
-                    var antiNode = new Coordinates(nextX, nextY);
+                    var antiNode = new Utilities.Coordinate(nextX, nextY);
                     antiNodes.Add(antiNode);
                     startX = nextX;
                     startY = nextY;
@@ -126,11 +126,11 @@ public static class Day8
 
                 startX = locations[j].X;
                 startY = locations[j].Y;
-                while (InRange(new Coordinates(startX - xDiff, startY - yDiff), range))
+                while (InRange(new Utilities.Coordinate(startX - xDiff, startY - yDiff), range))
                 {
                     var nextX = startX - xDiff;
                     var nextY = startY - yDiff;
-                    var antiNode = new Coordinates(nextX, nextY);
+                    var antiNode = new Utilities.Coordinate(nextX, nextY);
                     antiNodes.Add(antiNode);
                     startX = nextX;
                     startY = nextY;
@@ -143,31 +143,19 @@ public static class Day8
 
     private class Antenna
     {
-        public Antenna(char frequency, List<Coordinates> locations)
+        public Antenna(char frequency, List<Utilities.Coordinate> locations)
         {
             Frequency = frequency;
             Locations = locations;
-            AntiNodes = new List<Coordinates>();
+            AntiNodes = new List<Utilities.Coordinate>();
         }
 
         public char Frequency { get; set; }
-        public List<Coordinates> Locations { get; set; }
-        public List<Coordinates> AntiNodes { get; set; }
+        public List<Utilities.Coordinate> Locations { get; set; }
+        public List<Utilities.Coordinate> AntiNodes { get; set; }
     }
 
-    public class Coordinates
-    {
-        public Coordinates(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
-
-        public int X { get; set; }
-        public int Y { get; set; }
-    }
-
-    public static void DrawMap(List<string> input, List<Coordinates> antiNodes)
+    public static void DrawMap(List<string> input, List<Utilities.Coordinate> antiNodes)
     {
         foreach (var antiNode in antiNodes)
         {
