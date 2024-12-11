@@ -73,7 +73,7 @@ public static class Day10
         var nextMarkers = new List<Utilities.Coordinate>();
         var startMarker = map[start.Y][start.X];
 
-        foreach (var direction in Utilities.Directions)
+        foreach (var direction in Utilities.CardinalDirections)
         {
             var next = start.Move(direction);
             if (next.Y >= map.Count || next.Y < 0 || next.X >= map[0].Length || next.X < 0)

@@ -1,14 +1,37 @@
 namespace AdventOfCode2024;
 
-public class Utilities
+public static class Utilities
 {
+    private static IDictionary<Direction, int[]> DirectionDeltas { get; } = new Dictionary<Direction, int[]>
+    {
+        { Direction.North, [0, -1] },
+        { Direction.Northeast,[1, -1] },
+        { Direction.East, [1, 0] },
+        { Direction.Southeast, [1, 1] },
+        { Direction.South, [0, 1] },
+        { Direction.Southwest, [-1, 1] },
+        { Direction.West, [-1, 0] },
+        { Direction.Northwest, [-1, -1] }
+    };
     
-    public static readonly List<int[]> Directions =
+    public static List<Direction> CardinalDirections { get; } =
     [
-        [0, 1],
-        [-1, 0],
-        [0, -1],
-        [1, 0]
+        Direction.North,
+        Direction.East,
+        Direction.South,
+        Direction.West
+    ];
+    
+    public static List<Direction> Directions { get; } =
+    [
+        Direction.North,
+        Direction.Northeast,
+        Direction.East,
+        Direction.Southeast,
+        Direction.South,
+        Direction.Southwest,
+        Direction.West,
+        Direction.Northwest
     ];
     
     public static string LoadCsvFile(string path)
@@ -35,12 +58,25 @@ public class Utilities
             return $"{X}{Y}";
         }
 
-        public Coordinate Move(int[] direction)
+        public Coordinate Move(Direction direction)
         {
-            return new Coordinate(X + direction[0], Y + direction[1]);
+            var delta = DirectionDeltas[direction];
+            return new Coordinate(X + delta[0], Y + delta[1]);
         }
 
         public int X { get; } = x;
         public int Y { get; } = y;
+    }
+
+    public enum Direction
+    {
+        North,
+        Northeast,
+        East,
+        Southeast,
+        South,
+        Southwest,
+        West,
+        Northwest
     }
 }
