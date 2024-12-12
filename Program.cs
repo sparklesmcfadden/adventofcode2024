@@ -10,4 +10,4 @@ IConfiguration config = builder.Build();
 
 var inputPath = config["input_directory"]!;
 
-new AdventRunner(inputPath, 10);
+new AdventRunner(inputPath, 11);
